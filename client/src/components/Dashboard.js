@@ -88,71 +88,71 @@ function Dashboard() {
   const usedCount = accounts.filter((acc) => acc.status === 'used').length;
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="h-[100dvh] min-h-[100dvh] max-h-[100dvh] flex flex-col bg-gray-900 overflow-hidden">
       {/* Header */}
-      <header className="bg-gray-800 border-b border-gray-700 sticky top-0 z-10">
+      <header className="flex-shrink-0 bg-gray-800 border-b border-gray-700 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Mail className="w-6 h-6 text-white" />
+          <div className="flex items-center justify-between h-14 sm:h-16">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
-              <h1 className="text-xl font-bold text-white">Email Accounts Manager</h1>
+              <h1 className="text-base sm:text-xl font-bold text-white truncate">Email Accounts Manager</h1>
             </div>
             <button
               onClick={logout}
-              className="flex items-center gap-2 px-4 py-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-all duration-200"
+              className="flex items-center gap-2 px-3 py-2 sm:px-4 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-all duration-200 flex-shrink-0"
             >
               <LogOut className="w-5 h-5" />
-              <span>Выйти</span>
+              <span className="hidden sm:inline">Выйти</span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Main Content — прокручиваемая область, список помещается в экран на телефонах */}
+      <main className="flex-1 min-h-0 flex flex-col max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 overflow-hidden">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-400 text-sm font-medium">Всего аккаунтов</p>
-                <p className="text-3xl font-bold text-white mt-2">{accounts.length}</p>
+        <div className="grid grid-cols-3 gap-2 sm:gap-6 mb-4 sm:mb-6 flex-shrink-0">
+          <div className="bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-6 border border-gray-700 hover:border-gray-600 transition-all">
+            <div className="flex items-center justify-between gap-1">
+              <div className="min-w-0">
+                <p className="text-gray-400 text-xs sm:text-sm font-medium truncate">Всего</p>
+                <p className="text-xl sm:text-3xl font-bold text-white mt-0.5 sm:mt-2">{accounts.length}</p>
               </div>
-              <div className="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center">
-                <Mail className="w-6 h-6 text-blue-400" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-400 text-sm font-medium">Доступно</p>
-                <p className="text-3xl font-bold text-green-400 mt-2">{availableCount}</p>
-              </div>
-              <div className="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+              <div className="w-8 h-8 sm:w-12 sm:h-12 bg-blue-600/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Mail className="w-4 h-4 sm:w-6 sm:h-6 text-blue-400" />
               </div>
             </div>
           </div>
 
-          <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-400 text-sm font-medium">Использовано</p>
-                <p className="text-3xl font-bold text-red-400 mt-2">{usedCount}</p>
+          <div className="bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-6 border border-gray-700 hover:border-gray-600 transition-all">
+            <div className="flex items-center justify-between gap-1">
+              <div className="min-w-0">
+                <p className="text-gray-400 text-xs sm:text-sm font-medium truncate">Доступно</p>
+                <p className="text-xl sm:text-3xl font-bold text-green-400 mt-0.5 sm:mt-2">{availableCount}</p>
               </div>
-              <div className="w-12 h-12 bg-red-600/20 rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-red-500 rounded-full"></div>
+              <div className="w-8 h-8 sm:w-12 sm:h-12 bg-green-600/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-800 rounded-lg sm:rounded-xl p-3 sm:p-6 border border-gray-700 hover:border-gray-600 transition-all">
+            <div className="flex items-center justify-between gap-1">
+              <div className="min-w-0">
+                <p className="text-gray-400 text-xs sm:text-sm font-medium truncate">Использовано</p>
+                <p className="text-xl sm:text-3xl font-bold text-red-400 mt-0.5 sm:mt-2">{usedCount}</p>
+              </div>
+              <div className="w-8 h-8 sm:w-12 sm:h-12 bg-red-600/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-500 rounded-full"></div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4 sm:mb-6 flex-shrink-0">
           <button
             onClick={handleGetAccount}
             disabled={availableCount === 0}
@@ -171,16 +171,18 @@ function Dashboard() {
           </button>
         </div>
 
-        {/* Table */}
+        {/* Table — занимает оставшуюся высоту и прокручивается внутри экрана */}
         {loading ? (
-          <div className="flex items-center justify-center py-20">
+          <div className="flex-1 flex items-center justify-center min-h-0">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
           </div>
         ) : (
-          <AccountsTable
-            accounts={accounts}
-            onStatusToggle={handleStatusToggle}
-          />
+          <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
+            <AccountsTable
+              accounts={accounts}
+              onStatusToggle={handleStatusToggle}
+            />
+          </div>
         )}
       </main>
 
