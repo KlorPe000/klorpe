@@ -10,21 +10,21 @@ function AccountsTable({ accounts, onStatusToggle }) {
   };
 
   return (
-    <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden animate-fade-in">
-      <div className="overflow-x-auto scrollbar-hide">
-        <table className="w-full">
-          <thead className="bg-gray-700/50">
+    <div className="flex-1 min-h-0 flex flex-col bg-gray-800 rounded-xl border border-gray-700 overflow-hidden animate-fade-in">
+      <div className="flex-1 min-h-0 overflow-auto scrollbar-hide -mx-px">
+        <table className="w-full min-w-[500px]">
+          <thead className="bg-gray-700/50 sticky top-0 z-[1]">
             <tr>
-              <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                 Email
               </th>
-              <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                 Пароль
               </th>
-              <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                 Статус
               </th>
-              <th className="px-6 py-4 text-center text-xs font-medium text-gray-300 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 sm:py-4 text-center text-xs font-medium text-gray-300 uppercase tracking-wider">
                 Действия
               </th>
             </tr>
@@ -32,7 +32,7 @@ function AccountsTable({ accounts, onStatusToggle }) {
           <tbody className="divide-y divide-gray-700">
             {accounts.length === 0 ? (
               <tr>
-                <td colSpan="4" className="px-6 py-12 text-center text-gray-400">
+                <td colSpan="4" className="px-3 sm:px-6 py-12 text-center text-gray-400 text-sm">
                   Нет аккаунтов для отображения
                 </td>
               </tr>
@@ -42,57 +42,57 @@ function AccountsTable({ accounts, onStatusToggle }) {
                   key={account.id}
                   className="hover:bg-gray-700/30 transition-colors duration-150"
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm font-medium text-white">
+                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                      <span className="text-xs sm:text-sm font-medium text-white truncate max-w-[120px] sm:max-w-none">
                         {account.email}
                       </span>
                       <button
                         onClick={() => copyToClipboard(account.email, 'Email')}
-                        className="p-1.5 text-gray-400 hover:text-blue-400 hover:bg-gray-700 rounded transition-all duration-200"
+                        className="p-1.5 text-gray-400 hover:text-blue-400 hover:bg-gray-700 rounded transition-all duration-200 flex-shrink-0"
                         title="Копировать email"
                       >
                         <Copy className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm text-gray-300 font-mono">
+                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                      <span className="text-xs sm:text-sm text-gray-300 font-mono truncate max-w-[80px] sm:max-w-none">
                         {account.password}
                       </span>
                       <button
                         onClick={() => copyToClipboard(account.password, 'Пароль')}
-                        className="p-1.5 text-gray-400 hover:text-blue-400 hover:bg-gray-700 rounded transition-all duration-200"
+                        className="p-1.5 text-gray-400 hover:text-blue-400 hover:bg-gray-700 rounded transition-all duration-200 flex-shrink-0"
                         title="Копировать пароль"
                       >
                         <Copy className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       {account.status === 'available' ? (
                         <>
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span className="text-sm text-green-400 font-medium">
+                          <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-xs sm:text-sm text-green-400 font-medium">
                             Доступна
                           </span>
                         </>
                       ) : (
                         <>
-                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                          <span className="text-sm text-red-400 font-medium">
+                          <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-xs sm:text-sm text-red-400 font-medium">
                             Использована
                           </span>
                         </>
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                  <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-center">
                     <button
                       onClick={() => onStatusToggle(account.id, account.status)}
-                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 transform hover:scale-105 active:scale-95 ${
+                      className={`inline-flex items-center gap-1.5 sm:gap-2 px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg font-medium text-xs sm:text-sm transition-all duration-200 transform hover:scale-105 active:scale-95 ${
                         account.status === 'available'
                           ? 'bg-red-600/20 text-red-400 hover:bg-red-600/30 border border-red-600/30'
                           : 'bg-green-600/20 text-green-400 hover:bg-green-600/30 border border-green-600/30'
@@ -100,13 +100,15 @@ function AccountsTable({ accounts, onStatusToggle }) {
                     >
                       {account.status === 'available' ? (
                         <>
-                          <XCircle className="w-4 h-4" />
-                          <span>Отметить использованной</span>
+                          <XCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                          <span className="hidden sm:inline">Отметить использованной</span>
+                          <span className="sm:hidden">Использована</span>
                         </>
                       ) : (
                         <>
-                          <CheckCircle2 className="w-4 h-4" />
-                          <span>Отметить доступной</span>
+                          <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                          <span className="hidden sm:inline">Отметить доступной</span>
+                          <span className="sm:hidden">Доступна</span>
                         </>
                       )}
                     </button>
